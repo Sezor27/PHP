@@ -1,0 +1,58 @@
+<html>
+
+<body>
+
+<form action="insert.php" method="post">
+
+Imie: <input type="text" name="fname" /><br><br>
+
+Nazwisko: <input type="text" name="lname" /><br><br>
+
+ 
+
+<input type="submit" value="Dodaj do bazy danych"/>
+
+</form>
+<?php
+
+$con = mysql_connect("mysql.cis.ksu.edu","cis_id","password");
+
+if (!$con)
+
+  {
+
+  die('Could not connect: ' . mysql_error());
+
+  }
+
+ 
+
+mysql_select_db("cis_id", $con);
+
+ 
+
+$sql="INSERT INTO tab02 (fname, lname)
+
+VALUES
+
+('$_POST[fname]','$_POST[lname]')";
+
+ 
+
+if (!mysql_query($sql,$con))
+
+  {
+
+  die('Error: ' . mysql_error());
+
+  }
+
+echo "1 record added";
+
+ 
+
+mysql_close($con)
+
+?>
+</body>
+</html>
